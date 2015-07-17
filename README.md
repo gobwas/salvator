@@ -15,7 +15,7 @@ $ npm install --save salvator
 ```js
 var salvator = require('salvator');
 
-salvator('/path/to/my/file.js')
+salvator.safe('/path/to/my/file.js')
     .then(function(result) {
         // result is a safe to write filepath like a
         // /path/to/my/file(1).js
@@ -25,7 +25,7 @@ salvator('/path/to/my/file.js')
 
 ## API
 
-##### salvator(filepath: string[, options: Object]) : Promise
+##### salvator.safe(filepath: string[, options: Object]) : Promise
 
 ###### options.format
 Type: `string`

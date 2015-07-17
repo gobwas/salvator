@@ -1,1 +1,1 @@
-exports.salvator = require("./lib/salvator.js");
+exports.safe = require("./lib/salvator.js");
