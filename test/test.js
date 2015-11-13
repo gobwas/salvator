@@ -21,7 +21,7 @@ describe('salvator', function () {
 
 	it('should return promise', function() {
 		// prepare
-		fs.exists = function noop(){};
+		fs.stat = function noop(){};
 
 		// when
 		var result = salvator('aaa');
@@ -31,18 +31,18 @@ describe('salvator', function () {
 	});
 
 	it('should check existance of file', function (done) {
-		var path, initialPath, count, exists;
+		var path, initialPath, count, stat;
 
 		// before
 		count = 0;
 
-		fs.exists = (exists = sinon.spy(function(path, callback) {
+		fs.stat = (stat = sinon.spy(function(path, callback) {
 			if (count == 2) {
-				return callback(false);
+				return callback(true);
 			}
 
 			count++;
-			callback(true);
+			callback(false);
 		}));
 
 		// when
@@ -56,8 +56,8 @@ describe('salvator', function () {
 		// then
 		path
 			.then(function(result) {
-				expect(exists.callCount).equal(3);
-				// expect(exists.calledWithExactly(initialPath)).to.be.true;
+				expect(stat.callCount).equal(3);
+				// expect(stat.calledWithExactly(initialPath)).to.be.true;
 				expect(result).equal("/path/to/abc(2).js");
 			})
 			.then(done, done);
