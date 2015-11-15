@@ -45,6 +45,11 @@ Default: `999`
 
 Limit of iterations.
 
+###### options.exclude
+Type: `Array`  
+Default: `[]`
+
+Contains a list of "excluded" filepaths that will not be returned by the module in any case.
 
 ## License
 
